@@ -1,11 +1,17 @@
 {
   "name": "json-config-read",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Tool for easily reading JSON configuration folders",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "lib/**/*",
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SalvatorePreviti/json-config-read.git"
@@ -30,6 +36,7 @@
     "eslint-config-quick": "^0.1.7",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^7.0.1",
+    "jest": "^23.4.2",
     "prettier": "^1.14.2"
   }
 }
