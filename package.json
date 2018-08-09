@@ -1,0 +1,35 @@
+{
+  "name": "json-config-read",
+  "version": "1.0.0",
+  "description": "Tool for easily reading JSON configuration folders",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SalvatorePreviti/json-config-read.git"
+  },
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "author": "Salvatore Previti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SalvatorePreviti/json-config-read/issues"
+  },
+  "homepage": "https://github.com/SalvatorePreviti/json-config-read#readme",
+  "dependencies": {
+    "hjson": ">=3.1.1",
+    "deepmerge": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.5.7",
+    "eslint": "^5.3.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-quick": "^0.1.7",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.1",
+    "prettier": "^1.14.2"
+  }
+}

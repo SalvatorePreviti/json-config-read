@@ -1,0 +1,13 @@
+{
+  "clang-format.language.javascript.enable": false,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "eslint.autoFixOnSave": true,
+  "prettier.eslintIntegration": false,
+  "prettier.requireConfig": true,
+  "stylelint.enable": false,
+  "files.associations": {
+    "**/test/data/*.json": "jsonc"
+  }
+}
