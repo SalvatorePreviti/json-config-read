@@ -1,6 +1,6 @@
 {
   "name": "json-config-read",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Tool for easily reading JSON configuration folders",
   "main": "index.js",
   "scripts": {
