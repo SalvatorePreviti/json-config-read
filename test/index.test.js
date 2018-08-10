@@ -1,4 +1,5 @@
 const index = require('../index')
+const ConfigReadOptions = require('../ConfigReadOptions')
 const configReadSync = require('../configReadSync')
 const configReadAsync = require('../configReadAsync')
 const configsListSync = require('../configsListSync')
@@ -7,6 +8,10 @@ const configsReadManyAsync = require('../configsReadManyAsync')
 const configsReadManySync = require('../configsReadManySync')
 
 describe('index', () => {
+  it('exports ConfigReadOptions', () => {
+    expect(index.ConfigReadOptions).toBe(ConfigReadOptions)
+  })
+
   it('exports configReadAsync', () => {
     expect(index.configReadAsync).toBe(configReadAsync)
   })

@@ -7,14 +7,7 @@ const configsReadManyAsync = require('./configsReadManyAsync')
 const configsReadManySync = require('./configsReadManySync')
 
 module.exports = {
-  get defaultOptions() {
-    return ConfigReadOptions.default
-  },
-
-  set defaultOptions(value) {
-    ConfigReadOptions.default = value
-  },
-
+  ConfigReadOptions,
   configReadAsync,
   configReadSync,
   configsListAsync,
