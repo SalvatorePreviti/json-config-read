@@ -1,9 +1,9 @@
 const path = require('path')
-const listConfigsAsync = require('../listConfigsAsync')
+const configsListAsync = require('../configsListAsync')
 
-describe('listConfigsAsync', () => {
+describe('configsListAsync', () => {
   it('is able to list all the configurations in a folder', async () => {
-    const list = await listConfigsAsync('test-data/list-configs', { rootPath: __dirname })
+    const list = await configsListAsync('test-data/list-configs', { rootPath: __dirname })
     const expected = ['a.json', 'b.jsonc', 'x'].map(x => path.join(__dirname, 'test-data/list-configs', x)).sort()
     expect(list).toEqual(expected)
   })

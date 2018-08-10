@@ -10,7 +10,7 @@ const makeError = require('./lib/makeError')
  * @param {configReadOptions.default} [options=optionsModule.default] The options
  * @returns {string[]} A list of all full paths of all configurations
  */
-function listConfigsSync(folderPath, options = configReadOptions.default) {
+function configsListSync(folderPath, options = configReadOptions.default) {
   options = configReadOptions.get(options)
   folderPath = resolvePath(folderPath, options)
 
@@ -48,4 +48,4 @@ function listConfigsSync(folderPath, options = configReadOptions.default) {
   }
 }
 
-module.exports = listConfigsSync
+module.exports = configsListSync

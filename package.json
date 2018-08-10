@@ -8,9 +8,13 @@
   },
   "files": [
     "lib/**/*",
-    "configReadAsync.js",
     "configReadOptions.js",
+    "configReadAsync.js",
     "configReadSync.js",
+    "configsListAsync.js",
+    "configsListSync.js",
+    "configsReadManyAsync.js",
+    "configsReadManySync.js",
     "README.md",
     "LICENSE"
   ],

@@ -1,10 +1,10 @@
 const configReadSync = require('./configReadSync')
 const configReadAsync = require('./configReadAsync')
-const listConfigsAsync = require('./listConfigsAsync')
-const listConfigsSync = require('./listConfigsSync')
+const configsListAsync = require('./configsListAsync')
+const configsListSync = require('./configsListSync')
 
 module.exports.configReadSync = configReadSync
 module.exports.configReadAsync = configReadAsync
 
-module.exports.listConfigsAsync = listConfigsAsync
-module.exports.listConfigsSync = listConfigsSync
+module.exports.configsListAsync = configsListAsync
+module.exports.configsListSync = configsListSync
