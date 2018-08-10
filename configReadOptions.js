@@ -93,6 +93,6 @@ function get(options = defaultOptions) {
 }
 
 module.exports = {
-  defaultOptions,
+  default: defaultOptions,
   get
 }

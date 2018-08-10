@@ -1,4 +1,4 @@
-const defaultOptions = require('./configReadOptions').defaultOptions
+const defaultOptions = require('./configReadOptions').default
 const configReadSync = require('./configReadSync')
 const configReadAsync = require('./configReadAsync')
 const configsListAsync = require('./configsListAsync')
