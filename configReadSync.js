@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const configReadOptions = require('./configReadOptions')
+const ConfigReadOptions = require('./ConfigReadOptions')
 const resolvePath = require('./lib/resolvePath')
 const readFile = require('./lib/readFile')
 const makeError = require('./lib/makeError')
@@ -10,11 +10,11 @@ const deepmergeConfig = require('./lib/deepmergeConfig')
  * Reads a configuration file or directory synchronously.
  *
  * @param {string} configPath Path of the file or directory to load
- * @param {optionsModule.default} [options=configReadOptions.default] The options
+ * @param {ConfigReadOptions} [options=ConfigReadOptions.default] The options
  * @returns {*} The loaded data
  */
-function readConfigSync(configPath, options = configReadOptions.default) {
-  options = configReadOptions.get(options)
+function readConfigSync(configPath, options = ConfigReadOptions.default) {
+  options = ConfigReadOptions.get(options)
   configPath = resolvePath(configPath, options)
 
   try {

@@ -1,5 +1,5 @@
 const configReadAsync = require('./configReadAsync')
-const configReadOptions = require('./configReadOptions')
+const ConfigReadOptions = require('./ConfigReadOptions')
 const configsListAsync = require('./configsListAsync')
 
 const path = require('path')
@@ -8,11 +8,11 @@ const makeError = require('./lib/makeError')
 /**
  * Reads all the configurations contained in a folder to a map object
  * @param {string} folderPath Path of the folder that contains multiple configurations to load
- * @param {configReadOptions.default} [options=optionsModule.default] The options
+ * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
  * @returns {Promise<Object.<string, *>>} A promise that resolves a map of loaded configurations
  */
-async function configsReadManyAsync(folderPath, options = configReadOptions.default) {
-  options = configReadOptions.get(options)
+async function configsReadManyAsync(folderPath, options = ConfigReadOptions.default) {
+  options = ConfigReadOptions.get(options)
 
   try {
     const configPaths = await configsListAsync(folderPath, options)

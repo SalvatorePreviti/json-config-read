@@ -1,17 +1,17 @@
 const path = require('path')
 const fs = require('fs')
-const configReadOptions = require('./configReadOptions')
+const ConfigReadOptions = require('./ConfigReadOptions')
 const resolvePath = require('./lib/resolvePath')
 const makeError = require('./lib/makeError')
 
 /**
  * Lists all configurations in a directory, synchrounously.
  * @param {string} folderPath Path of the folder that contains multiple configurations to list
- * @param {configReadOptions.default} [options=optionsModule.default] The options
+ * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
  * @returns {string[]} A list of all full paths of all configurations
  */
-function configsListSync(folderPath, options = configReadOptions.default) {
-  options = configReadOptions.get(options)
+function configsListSync(folderPath, options = ConfigReadOptions.default) {
+  options = ConfigReadOptions.get(options)
   folderPath = resolvePath(folderPath, options)
 
   const result = []

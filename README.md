@@ -1,4 +1,4 @@
-\#json-config-read
+# json-config-read
 
 # install:
 
@@ -12,14 +12,16 @@ npm i --save json-config-read
 
 ### Table of Contents
 
--   [readConfigAsync](#readconfigasync)
-    -   [Parameters](#parameters)
--   [defaultOptions](#defaultoptions)
-    -   [extensions](#extensions)
+-   [ConfigReadOptions](#configreadoptions)
     -   [allowDirectories](#allowdirectories)
     -   [rootPath](#rootpath)
-    -   [Parameters](#parameters-1)
+    -   [extensions](#extensions)
+    -   [get](#get)
+        -   [Parameters](#parameters)
+    -   [default](#default)
 -   [readConfigSync](#readconfigsync)
+    -   [Parameters](#parameters-1)
+-   [readConfigAsync](#readconfigasync)
     -   [Parameters](#parameters-2)
 -   [configsListAsync](#configslistasync)
     -   [Parameters](#parameters-3)
@@ -30,24 +32,9 @@ npm i --save json-config-read
 -   [configsReadManySync](#configsreadmanysync)
     -   [Parameters](#parameters-6)
 
-## readConfigAsync
+## ConfigReadOptions
 
-Reads a configuration file or directory asynchronously.
-
-### Parameters
-
--   `configPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the file or directory to load
--   `options` **configReadOptions.default** The options (optional, default `optionsModule.default`)
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;any>** A promise that resolves the loaded data
-
-## defaultOptions
-
-### extensions
-
-The file extensions that are parseable.
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>?
+Read options
 
 ### allowDirectories
 
@@ -61,15 +48,27 @@ The root path to use. If unspecified, current directory is used.
 
 Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?
 
-## 
+### extensions
+
+The file extensions that are parseable.
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>?
+
+### get
 
 Sanitize the given option merging with default options
 
-### Parameters
+#### Parameters
 
--   `options` **[defaultOptions](#defaultoptions)** The options to merge. (optional, default `defaultOptions`)
+-   `options` **[ConfigReadOptions](#configreadoptions)?** The options to merge.
 
-Returns **[defaultOptions](#defaultoptions)** Merged and sanitized options.
+Returns **[ConfigReadOptions](#configreadoptions)** Merged and sanitized options.
+
+### default
+
+The default options.
+
+Type: [ConfigReadOptions](#configreadoptions)
 
 ## readConfigSync
 
@@ -78,9 +77,20 @@ Reads a configuration file or directory synchronously.
 ### Parameters
 
 -   `configPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the file or directory to load
--   `options` **optionsModule.default** The options (optional, default `configReadOptions.default`)
+-   `options` **[ConfigReadOptions](#configreadoptions)** The options (optional, default `ConfigReadOptions.default`)
 
 Returns **any** The loaded data
+
+## readConfigAsync
+
+Reads a configuration file or directory asynchronously.
+
+### Parameters
+
+-   `configPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the file or directory to load
+-   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;any>** A promise that resolves the loaded data
 
 ## configsListAsync
 
@@ -89,7 +99,7 @@ Lists all configurations in a directory, asynchrounously.
 ### Parameters
 
 -   `folderPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the folder that contains multiple configurations to list
--   `options` **configReadOptions.default** The options (optional, default `optionsModule.default`)
+-   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>>** A promise that resolves a list of full paths
 
@@ -100,7 +110,7 @@ Lists all configurations in a directory, synchrounously.
 ### Parameters
 
 -   `folderPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the folder that contains multiple configurations to list
--   `options` **configReadOptions.default** The options (optional, default `optionsModule.default`)
+-   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** A list of all full paths of all configurations
 
@@ -111,7 +121,7 @@ Reads all the configurations contained in a folder to a map object
 ### Parameters
 
 -   `folderPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the folder that contains multiple configurations to load
--   `options` **configReadOptions.default** The options (optional, default `optionsModule.default`)
+-   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), any>>** A promise that resolves a map of loaded configurations
 
@@ -122,6 +132,6 @@ Reads all the configurations contained in a folder to a map object
 ### Parameters
 
 -   `folderPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the folder that contains multiple configurations to load
--   `options` **configReadOptions.default** The options (optional, default `optionsModule.default`)
+-   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), any>** A map of loaded configurations

@@ -1,7 +1,7 @@
 const path = require('path')
 const util = require('util')
 const fs = require('fs')
-const configReadOptions = require('./configReadOptions')
+const ConfigReadOptions = require('./ConfigReadOptions')
 const resolvePath = require('./lib/resolvePath')
 const readFile = require('./lib/readFile')
 const makeError = require('./lib/makeError')
@@ -14,11 +14,11 @@ const readdirAsync = util.promisify(fs.readdir)
  * Reads a configuration file or directory asynchronously.
  *
  * @param {string} configPath Path of the file or directory to load
- * @param {configReadOptions.default} [options=optionsModule.default] The options
+ * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
  * @returns {Promise<*>} A promise that resolves the loaded data
  */
-async function readConfigAsync(configPath, options = configReadOptions.default) {
-  options = configReadOptions.get(options)
+async function readConfigAsync(configPath, options = ConfigReadOptions.default) {
+  options = ConfigReadOptions.get(options)
   configPath = resolvePath(configPath, options)
 
   try {

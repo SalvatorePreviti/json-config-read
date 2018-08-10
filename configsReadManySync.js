@@ -1,5 +1,5 @@
 const configReadSync = require('./configReadSync')
-const configReadOptions = require('./configReadOptions')
+const ConfigReadOptions = require('./ConfigReadOptions')
 const configsListSync = require('./configsListSync')
 
 const path = require('path')
@@ -8,11 +8,11 @@ const makeError = require('./lib/makeError')
 /**
  * Reads all the configurations contained in a folder to a map object
  * @param {string} folderPath Path of the folder that contains multiple configurations to load
- * @param {configReadOptions.default} [options=optionsModule.default] The options
+ * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
  * @returns {Object.<string, *>} A map of loaded configurations
  */
-function configsReadManySync(folderPath, options = configReadOptions.default) {
-  options = configReadOptions.get(options)
+function configsReadManySync(folderPath, options = ConfigReadOptions.default) {
+  options = ConfigReadOptions.get(options)
 
   try {
     const configPaths = configsListSync(folderPath, options)

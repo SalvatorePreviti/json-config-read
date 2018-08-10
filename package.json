@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "doc": "documentation readme *.js --section=API"
+    "doc": "documentation readme ConfigReadOptions.js index.js --section=API"
   },
   "files": [
     "lib/**/*",
-    "configReadOptions.js",
+    "ConfigReadOptions.js",
     "configReadAsync.js",
     "configReadSync.js",
     "configsListAsync.js",

@@ -1,98 +1,114 @@
 const path = require('path')
 
-/** @class */
-const defaultOptions = {
+/**
+ * Read options
+ *
+ * @class
+ */
+class ConfigReadOptions {
+  constructor() {
+    /**
+     * True if directories can be read merging all files inside them
+     * @type {boolean?}
+     */
+    this.allowDirectories = true
+
+    /**
+     * The root path to use. If unspecified, current directory is used.
+     * @type {string?}
+     */
+    this.rootPath = undefined
+
+    /**
+     *
+     * The file extensions that are parseable.
+     *
+     * @type {Object.<string, boolean>?}
+     */
+    this.extensions = {
+      '.js': false,
+      '.json': true,
+      '.hjson': true,
+      '.jsonc': true
+    }
+  }
+
   /**
-   * The file extensions that are parseable.
+   * Sanitize the given option merging with default options
    *
-   * @type {Object.<string, boolean>?}
+   * @static
+   * @param {ConfigReadOptions?} options The options to merge.
+   * @returns {ConfigReadOptions} Merged and sanitized options.
    */
-  extensions: {
-    '.js': false,
-    '.json': true,
-    '.hjson': true,
-    '.jsonc': true
-  },
+  static get(options) {
+    const defaultOptions = ConfigReadOptions.defaultOptions || new ConfigReadOptions()
 
-  /**
-   * True if directories can be read merging all files inside them
-   * @type {boolean?}
-   */
-  allowDirectories: true,
+    const extensions = {}
+    for (const key of Object.keys(defaultOptions.extensions)) {
+      const ext = key.startsWith('.') ? key : `.${key}`
+      extensions[ext] = !!defaultOptions.extensions[key]
+    }
 
-  /**
-   * The root path to use. If unspecified, current directory is used.
-   * @type {string?}
-   */
-  rootPath: undefined
+    const result = new ConfigReadOptions()
+    Object.assign(result, defaultOptions)
+    result.extensions = extensions
+
+    if (options === null || options === undefined) {
+      options = defaultOptions
+    }
+
+    if (typeof options !== 'object') {
+      throw new TypeError(`options must be an object but is ${typeof options}`)
+    }
+
+    if (Array.isArray(options)) {
+      throw new TypeError(`options must be an object but is an array`)
+    }
+
+    if (options && options.extensions !== undefined && options.extensions !== null) {
+      if (typeof options.extensions !== 'object') {
+        throw new TypeError(`options.extensions must be an object but is ${typeof options.extensions}`)
+      }
+      if (Array.isArray(options.extensions)) {
+        throw new TypeError(`options.extensions must be an object but is an array`)
+      }
+
+      for (const key of Object.keys(options.extensions)) {
+        const ext = key.startsWith('.') ? key : `.${key}`
+        const v = !!options.extensions[key]
+        if (v !== extensions[ext]) {
+          extensions[ext] = v
+        }
+      }
+    }
+
+    if (options && options !== defaultOptions) {
+      if (options.rootPath !== undefined && options.rootPath !== null) {
+        if (typeof options.rootPath !== 'string') {
+          throw new TypeError('options.rootPath must be a string')
+        }
+        result.rootPath = options.rootPath
+      }
+      if (options.allowDirectories !== undefined) {
+        result.allowDirectories = !!options.allowDirectories
+      }
+    }
+
+    if (!result.rootPath) {
+      result.rootPath = process.cwd()
+    }
+
+    result.rootPath = path.normalize(result.rootPath)
+
+    return result
+  }
 }
 
 /**
- * Sanitize the given option merging with default options
- *
- * @param {defaultOptions} [options=defaultOptions] The options to merge.
- * @returns {defaultOptions} Merged and sanitized options.
+ * The default options.
+ * @static
+ * @type {ConfigReadOptions}
  */
-function get(options = defaultOptions) {
-  const extensions = {}
-  for (const key of Object.keys(defaultOptions.extensions)) {
-    const ext = key.startsWith('.') ? key : `.${key}`
-    extensions[ext] = !!defaultOptions.extensions[key]
-  }
+ConfigReadOptions.default = new ConfigReadOptions()
 
-  const result = { ...defaultOptions, extensions }
-
-  if (options === null) {
-    options = defaultOptions
-  }
-
-  if (typeof options !== 'object') {
-    throw new TypeError(`options must be an object but is ${typeof options}`)
-  }
-
-  if (Array.isArray(options)) {
-    throw new TypeError(`options must be an object but is an array`)
-  }
-
-  if (options && options.extensions !== undefined && options.extensions !== null) {
-    if (typeof options.extensions !== 'object') {
-      throw new TypeError(`options.extensions must be an object but is ${typeof options.extensions}`)
-    }
-    if (Array.isArray(options.extensions)) {
-      throw new TypeError(`options.extensions must be an object but is an array`)
-    }
-
-    for (const key of Object.keys(options.extensions)) {
-      const ext = key.startsWith('.') ? key : `.${key}`
-      const v = !!options.extensions[key]
-      if (v !== extensions[ext]) {
-        extensions[ext] = v
-      }
-    }
-  }
-
-  if (options && options !== defaultOptions) {
-    if (options.rootPath !== undefined && options.rootPath !== null) {
-      if (typeof options.rootPath !== 'string') {
-        throw new TypeError('options.rootPath must be a string')
-      }
-      result.rootPath = options.rootPath
-    }
-    if (options.allowDirectories !== undefined) {
-      result.allowDirectories = !!options.allowDirectories
-    }
-  }
-
-  if (!result.rootPath) {
-    result.rootPath = process.cwd()
-  }
-
-  result.rootPath = path.normalize(result.rootPath)
-
-  return result
-}
-
-module.exports = {
-  default: defaultOptions,
-  get
-}
+module.exports = ConfigReadOptions

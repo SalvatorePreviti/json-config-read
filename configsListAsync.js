@@ -1,7 +1,7 @@
 const path = require('path')
 const util = require('util')
 const fs = require('fs')
-const configReadOptions = require('./configReadOptions')
+const ConfigReadOptions = require('./ConfigReadOptions')
 const resolvePath = require('./lib/resolvePath')
 const makeError = require('./lib/makeError')
 
@@ -11,11 +11,11 @@ const readdirAsync = util.promisify(fs.readdir)
 /**
  * Lists all configurations in a directory, asynchrounously.
  * @param {string} folderPath Path of the folder that contains multiple configurations to list
- * @param {configReadOptions.default} [options=optionsModule.default] The options
+ * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
  * @returns {Promise<string[]>} A promise that resolves a list of full paths
  */
-async function configsListAsync(folderPath, options = configReadOptions.default) {
-  options = configReadOptions.get(options)
+async function configsListAsync(folderPath, options = ConfigReadOptions.default) {
+  options = ConfigReadOptions.get(options)
   folderPath = resolvePath(folderPath, options)
 
   const result = []
