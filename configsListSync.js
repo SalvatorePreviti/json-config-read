@@ -11,7 +11,7 @@ const makeError = require('./lib/makeError')
  * @returns {string[]} A list of all full paths of all configurations
  */
 function configsListSync(folderPath, options = ConfigReadOptions.default) {
-  options = ConfigReadOptions.get(options)
+  options = new ConfigReadOptions(options)
   folderPath = resolvePath(folderPath, options)
 
   const result = []

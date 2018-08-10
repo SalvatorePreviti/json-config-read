@@ -12,7 +12,7 @@ const makeError = require('./lib/makeError')
  * @returns {Object.<string, *>} A map of loaded configurations
  */
 function configsReadManySync(folderPath, options = ConfigReadOptions.default) {
-  options = ConfigReadOptions.get(options)
+  options = new ConfigReadOptions(options)
 
   try {
     const configPaths = configsListSync(folderPath, options)

@@ -1,23 +1,23 @@
 const ConfigReadOptions = require('../ConfigReadOptions')
 
-describe('ConfigReadOptions.get', () => {
+describe('ConfigReadOptions', () => {
   it('works with undefined, null or empty object', () => {
     const expected = { ...ConfigReadOptions.default, rootPath: process.cwd() }
-    expect(ConfigReadOptions.get(undefined)).toEqual(expected)
-    expect(ConfigReadOptions.get(null)).toEqual(expected)
-    expect(ConfigReadOptions.get({})).toEqual(expected)
-    expect(ConfigReadOptions.get(ConfigReadOptions.default)).toEqual(expected)
+    expect(new ConfigReadOptions(undefined)).toEqual(expected)
+    expect(new ConfigReadOptions(null)).toEqual(expected)
+    expect(new ConfigReadOptions({})).toEqual(expected)
+    expect(new ConfigReadOptions(ConfigReadOptions.default)).toEqual(expected)
   })
 
   it('returns always a different instance', () => {
-    const a = ConfigReadOptions.get()
-    const b = ConfigReadOptions.get()
+    const a = new ConfigReadOptions()
+    const b = new ConfigReadOptions()
     expect(a !== b).toBe(true)
     expect(a.extensions !== b.extensions).toBe(true)
   })
 
   it('merges and fixes extensions', () => {
-    const a = ConfigReadOptions.get({
+    const a = new ConfigReadOptions({
       extensions: {
         xxx: true,
         yyy: false,
@@ -36,8 +36,8 @@ describe('ConfigReadOptions.get', () => {
   })
 
   it('updates allowDirectories', () => {
-    expect(ConfigReadOptions.get({ allowDirectories: true }).allowDirectories).toBe(true)
-    expect(ConfigReadOptions.get({ allowDirectories: false }).allowDirectories).toBe(false)
-    expect(ConfigReadOptions.get({ allowDirectories: undefined }).allowDirectories).toBe(true)
+    expect(new ConfigReadOptions({ allowDirectories: true }).allowDirectories).toBe(true)
+    expect(new ConfigReadOptions({ allowDirectories: false }).allowDirectories).toBe(false)
+    expect(new ConfigReadOptions({ allowDirectories: undefined }).allowDirectories).toBe(true)
   })
 })

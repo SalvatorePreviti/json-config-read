@@ -12,7 +12,7 @@ const makeError = require('./lib/makeError')
  * @returns {Promise<Object.<string, *>>} A promise that resolves a map of loaded configurations
  */
 async function configsReadManyAsync(folderPath, options = ConfigReadOptions.default) {
-  options = ConfigReadOptions.get(options)
+  options = new ConfigReadOptions(options)
 
   try {
     const configPaths = await configsListAsync(folderPath, options)

@@ -15,7 +15,7 @@ const readdirAsync = util.promisify(fs.readdir)
  * @returns {Promise<string[]>} A promise that resolves a list of full paths
  */
 async function configsListAsync(folderPath, options = ConfigReadOptions.default) {
-  options = ConfigReadOptions.get(options)
+  options = new ConfigReadOptions(options)
   folderPath = resolvePath(folderPath, options)
 
   const result = []

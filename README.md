@@ -13,15 +13,14 @@ npm i --save json-config-read
 ### Table of Contents
 
 -   [ConfigReadOptions](#configreadoptions)
+    -   [Parameters](#parameters)
     -   [allowDirectories](#allowdirectories)
     -   [rootPath](#rootpath)
     -   [extensions](#extensions)
-    -   [get](#get)
-        -   [Parameters](#parameters)
     -   [default](#default)
--   [readConfigSync](#readconfigsync)
+-   [configReadSync](#configreadsync)
     -   [Parameters](#parameters-1)
--   [readConfigAsync](#readconfigasync)
+-   [configReadAsync](#configreadasync)
     -   [Parameters](#parameters-2)
 -   [configsListAsync](#configslistasync)
     -   [Parameters](#parameters-3)
@@ -34,7 +33,11 @@ npm i --save json-config-read
 
 ## ConfigReadOptions
 
-Read options
+Config read options type
+
+### Parameters
+
+-   `options` **([ConfigReadOptions](#configreadoptions) \| [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) | null)** The options to merge, (optional, default `null`)
 
 ### allowDirectories
 
@@ -54,23 +57,13 @@ The file extensions that are parseable.
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>?
 
-### get
-
-Sanitize the given option merging with default options
-
-#### Parameters
-
--   `options` **[ConfigReadOptions](#configreadoptions)?** The options to merge.
-
-Returns **[ConfigReadOptions](#configreadoptions)** Merged and sanitized options.
-
 ### default
 
 The default options.
 
 Type: [ConfigReadOptions](#configreadoptions)
 
-## readConfigSync
+## configReadSync
 
 Reads a configuration file or directory synchronously.
 
@@ -81,7 +74,7 @@ Reads a configuration file or directory synchronously.
 
 Returns **any** The loaded data
 
-## readConfigAsync
+## configReadAsync
 
 Reads a configuration file or directory asynchronously.
 

@@ -13,8 +13,8 @@ const deepmergeConfig = require('./lib/deepmergeConfig')
  * @param {ConfigReadOptions} [options=ConfigReadOptions.default] The options
  * @returns {*} The loaded data
  */
-function readConfigSync(configPath, options = ConfigReadOptions.default) {
-  options = ConfigReadOptions.get(options)
+function configReadSync(configPath, options = ConfigReadOptions.default) {
+  options = new ConfigReadOptions(options)
   configPath = resolvePath(configPath, options)
 
   try {
@@ -53,4 +53,4 @@ function readConfigSync(configPath, options = ConfigReadOptions.default) {
   }
 }
 
-module.exports = readConfigSync
+module.exports = configReadSync

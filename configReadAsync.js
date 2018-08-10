@@ -17,8 +17,8 @@ const readdirAsync = util.promisify(fs.readdir)
  * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
  * @returns {Promise<*>} A promise that resolves the loaded data
  */
-async function readConfigAsync(configPath, options = ConfigReadOptions.default) {
-  options = ConfigReadOptions.get(options)
+async function configReadAsync(configPath, options = ConfigReadOptions.default) {
+  options = new ConfigReadOptions(options)
   configPath = resolvePath(configPath, options)
 
   try {
@@ -63,4 +63,4 @@ async function readConfigAsync(configPath, options = ConfigReadOptions.default) 
   }
 }
 
-module.exports = readConfigAsync
+module.exports = configReadAsync
