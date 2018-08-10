@@ -1,0 +1,12 @@
+{
+  // hello world
+  "hello": "world",
+  /* a number */
+  "number": 10,
+  // an object
+  "obj": {
+    "a": 1,
+    "b": 2,
+    "c": 3
+  }
+}

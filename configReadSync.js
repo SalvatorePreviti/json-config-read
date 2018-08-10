@@ -21,10 +21,14 @@ function readConfigSync(configPath, options = configReadOptions.default) {
     const stat = fs.lstatSync(configPath)
 
     if (stat.isFile()) {
-      return readFile.readAsync(configPath)
+      const ext = path.extname(configPath)
+      if (!options.extensions[ext]) {
+        throw new Error(`Invalid extension "${ext}"`)
+      }
+      return readFile.readSync(configPath).data
     }
 
-    if (!stat.isDirectory()) {
+    if (!stat.isDirectory() || !options.allowDirectories) {
       const error = new Error(`Path not found or not readable`)
       error.errno = -2
       error.code = 'ENOENT'
@@ -34,8 +38,8 @@ function readConfigSync(configPath, options = configReadOptions.default) {
     const data = []
     for (const file of fs.readdirSync(configPath)) {
       const ext = path.extname(file)
-      if (options.extensions[ext]) {
-        data.push(readFile.readAsync(path.join(configPath, file)))
+      if (options.extensions[ext] && !file.startsWith('.')) {
+        data.push(readFile.readSync(path.join(configPath, file)))
       }
     }
 

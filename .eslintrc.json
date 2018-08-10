@@ -1,6 +1,10 @@
 {
-  "extends": ["eslint-config-quick"],
+  "extends": ["eslint-config-quick", "plugin:jest/recommended"],
+  "plugins": ["jest"],
   "rules": {
     "node/no-unpublished-require": 0
+  },
+  "env": {
+    "jest/globals": true
   }
 }

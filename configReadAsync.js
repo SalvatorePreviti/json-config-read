@@ -25,10 +25,14 @@ async function readConfigAsync(configPath, options = configReadOptions.default) 
     const stat = await lstatAsync(configPath)
 
     if (stat.isFile()) {
-      return readFile.readAsync(configPath)
+      const ext = path.extname(configPath)
+      if (!options.extensions[ext]) {
+        throw new Error(`Invalid extension "${ext}"`)
+      }
+      return (await readFile.readSync(configPath)).data
     }
 
-    if (!stat.isDirectory()) {
+    if (!stat.isDirectory() || !options.allowDirectories) {
       const error = new Error(`Path not found or not readable`)
       error.errno = -2
       error.code = 'ENOENT'
@@ -38,7 +42,7 @@ async function readConfigAsync(configPath, options = configReadOptions.default) 
     const promises = []
     for (const file of await readdirAsync(configPath)) {
       const ext = path.extname(file)
-      if (options.extensions[ext]) {
+      if (options.extensions[ext] && !file.startsWith('.')) {
         promises.push(readFile.readAsync(path.join(configPath, file)))
       }
     }
