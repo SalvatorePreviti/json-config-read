@@ -1,5 +1,6 @@
 const path = require('path')
 
+/** @class */
 const defaultOptions = {
   /**
    * The file extensions that are parseable.
@@ -26,6 +27,12 @@ const defaultOptions = {
   rootPath: undefined
 }
 
+/**
+ * Sanitize the given option merging with default options
+ *
+ * @param {defaultOptions} [options=defaultOptions] The options to merge.
+ * @returns {defaultOptions} Merged and sanitized options.
+ */
 function get(options = defaultOptions) {
   const extensions = {}
   for (const key of Object.keys(defaultOptions.extensions)) {
@@ -85,5 +92,7 @@ function get(options = defaultOptions) {
   return result
 }
 
-module.exports.get = get
-module.exports.default = defaultOptions
+module.exports = {
+  defaultOptions,
+  get
+}

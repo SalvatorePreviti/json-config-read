@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "doc": "documentation readme index.js --section=API"
+    "doc": "documentation readme *.js --section=API"
   },
   "files": [
     "lib/**/*",
