@@ -1,7 +1,5 @@
-const defaultOptions = require('./lib/defaultOptions')
-const readSingleAsync = require('./lib/readSingleAsync')
-const readDirAsync = require('./lib/readDirAsync')
+const configReadSync = require('./configReadSync')
+const configReadAsync = require('./configReadAsync')
 
-module.exports.defaultOptions = defaultOptions
-module.exports.readSingleAsync = readSingleAsync
-module.exports.readDirAsync = readDirAsync
+module.exports.configReadSync = configReadSync
+module.exports.configReadAsync = configReadAsync

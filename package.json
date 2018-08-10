@@ -4,11 +4,13 @@
   "description": "Tool for easily reading JSON configuration folders",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "files": [
     "lib/**/*",
-    "index.js",
+    "configReadAsync.js",
+    "configReadOptions.js",
+    "configReadSync.js",
     "README.md",
     "LICENSE"
   ],
