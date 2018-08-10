@@ -39,15 +39,25 @@ async function readConfigAsync(configPath, options = configReadOptions.default) 
       throw error
     }
 
+    const data = []
     const promises = []
     for (const file of await readdirAsync(configPath)) {
       const ext = path.extname(file)
       if (options.extensions[ext] && !file.startsWith('.')) {
-        promises.push(readFile.readAsync(path.join(configPath, file)))
+        const f = path.join(configPath, file)
+        promises.push(
+          lstatAsync(f).then(async stats => {
+            if (stats.isFile()) {
+              data.push(await readFile.readAsync(f))
+            }
+          })
+        )
       }
     }
 
-    return deepmergeConfig(await Promise.all(promises), options.rootPath)
+    await Promise.all(promises)
+
+    return deepmergeConfig(data, options.rootPath)
   } catch (error) {
     throw makeError(error, configPath, options.rootPath)
   }

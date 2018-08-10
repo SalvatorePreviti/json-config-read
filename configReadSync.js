@@ -39,7 +39,11 @@ function readConfigSync(configPath, options = configReadOptions.default) {
     for (const file of fs.readdirSync(configPath)) {
       const ext = path.extname(file)
       if (options.extensions[ext] && !file.startsWith('.')) {
-        data.push(readFile.readSync(path.join(configPath, file)))
+        const f = path.join(configPath, file)
+        const stats = fs.lstatSync(f)
+        if (stats.isFile()) {
+          data.push(readFile.readSync(f))
+        }
       }
     }
 
