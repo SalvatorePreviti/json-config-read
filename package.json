@@ -4,7 +4,8 @@
   "description": "Tool for easily reading JSON configuration folders",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "doc": "documentation readme index.js --section=API"
   },
   "files": [
     "lib/**/*",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@types/node": "^10.5.7",
+    "documentation": "^8.1.0",
     "eslint": "^5.3.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-quick": "^0.1.7",
