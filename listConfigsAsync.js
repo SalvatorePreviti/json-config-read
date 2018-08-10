@@ -3,36 +3,57 @@ const util = require('util')
 const fs = require('fs')
 const configReadOptions = require('./configReadOptions')
 const resolvePath = require('./lib/resolvePath')
-const readFile = require('./lib/readFile')
 const makeError = require('./lib/makeError')
-const deepmergeConfig = require('./lib/deepmergeConfig')
 
 const lstatAsync = util.promisify(fs.lstat)
 const readdirAsync = util.promisify(fs.readdir)
 
 /**
- * Reads a configuration file or directory asynchronously.
- *
+ * Lists all configurations in a directory, asynchrounously.
  * @param {string} folderPath Path of the folder that contains multiple configurations to list
  * @param {configReadOptions.default} [options=optionsModule.default] The options
- * @returns {Promise<string[]>} A promise that resolves a list of paths
+ * @returns {Promise<string[]>} A promise that resolves a list of full paths
  */
 async function listConfigsAsync(folderPath, options = configReadOptions.default) {
   options = configReadOptions.get(options)
   folderPath = resolvePath(folderPath, options)
 
+  const result = []
+
   try {
-    for (const file of await readdirAsync(folderPath)) {
-      const ext = path.extname(file)
-      if (options.extensions[ext] && !file.startsWith('.')) {
-        promises.push(readFile.readAsync(path.join(configPath, file)))
+    const promises = []
+    for (const filename of await readdirAsync(folderPath)) {
+      if (!filename.startsWith('.')) {
+        const filepath = path.join(folderPath, filename)
+        promises.push(
+          lstatAsync(filepath).then(async stats => {
+            if (stats.isFile()) {
+              const ext = path.extname(filename)
+              if (options.extensions[ext]) {
+                result.push(filepath)
+              }
+            } else if (stats.isDirectory()) {
+              const inner = await readdirAsync(filepath)
+              for (const x of inner) {
+                if (!x.startsWith('.')) {
+                  const ext = path.extname(x)
+                  if (options.extensions[ext]) {
+                    result.push(filepath)
+                    break
+                  }
+                }
+              }
+            }
+          })
+        )
       }
     }
 
-    return deepmergeConfig(await Promise.all(promises), options.rootPath)
+    await Promise.all(promises)
+    return result.sort()
   } catch (error) {
-    throw makeError(error, configPath, options.rootPath)
+    throw makeError(error, folderPath, options.rootPath)
   }
 }
 
-module.exports = readConfigAsync
+module.exports = listConfigsAsync
