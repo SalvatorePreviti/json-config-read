@@ -1,6 +1,6 @@
 {
   "name": "json-config-read",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Tool for easily reading JSON configuration folders",
   "main": "index.js",
   "scripts": {
@@ -37,13 +37,13 @@
     "deepmerge": "^2.1.1"
   },
   "devDependencies": {
-    "@types/node": "^10.5.7",
+    "@types/node": "^10.5.8",
     "documentation": "^8.1.0",
     "eslint": "^5.3.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-quick": "^0.1.7",
     "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jest": "^21.20.2",
+    "eslint-plugin-jest": "^21.21.0",
     "eslint-plugin-node": "^7.0.1",
     "jest": "^23.5.0",
     "prettier": "^1.14.2"
