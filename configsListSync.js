@@ -7,7 +7,7 @@ const makeError = require('./lib/makeError')
 /**
  * Lists all configurations in a directory, synchrounously.
  * @param {string} folderPath Path of the folder that contains multiple configurations to list
- * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
+ * @param {Partial<ConfigReadOptions>} [options=ConfigReadOptions] The options
  * @returns {string[]} A list of all full paths of all configurations
  */
 function configsListSync(folderPath, options = ConfigReadOptions.default) {

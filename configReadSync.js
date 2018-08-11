@@ -10,7 +10,7 @@ const deepmergeConfig = require('./lib/deepmergeConfig')
  * Reads a configuration file or directory synchronously.
  *
  * @param {string} configPath Path of the file or directory to load
- * @param {ConfigReadOptions} [options=ConfigReadOptions.default] The options
+ * @param {Partial<ConfigReadOptions>} [options=ConfigReadOptions.default] The options
  * @returns {*} The loaded data
  */
 function configReadSync(configPath, options = ConfigReadOptions.default) {

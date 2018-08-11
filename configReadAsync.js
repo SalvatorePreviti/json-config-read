@@ -14,7 +14,7 @@ const readdirAsync = util.promisify(fs.readdir)
  * Reads a configuration file or directory asynchronously.
  *
  * @param {string} configPath Path of the file or directory to load
- * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
+ * @param {Partial<ConfigReadOptions>} [options=ConfigReadOptions] The options
  * @returns {Promise<*>} A promise that resolves the loaded data
  */
 async function configReadAsync(configPath, options = ConfigReadOptions.default) {

@@ -37,31 +37,31 @@ Config read options type
 
 ### Parameters
 
--   `options` **([ConfigReadOptions](#configreadoptions) \| [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) | null)** The options to merge, (optional, default `null`)
+-   `options` **(Partial&lt;[ConfigReadOptions](#configreadoptions)> | [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) | null)** The options to merge, (optional, default `null`)
 
 ### allowDirectories
 
 True if directories can be read merging all files inside them
 
-Type: [boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?
+Type: [boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
 ### rootPath
 
 The root path to use. If unspecified, current directory is used.
 
-Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?
+Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 ### extensions
 
 The file extensions that are parseable.
 
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>?
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>
 
 ### default
 
 The default options.
 
-Type: [ConfigReadOptions](#configreadoptions)
+Type: Partial&lt;[ConfigReadOptions](#configreadoptions)>
 
 ## configReadSync
 
@@ -70,7 +70,7 @@ Reads a configuration file or directory synchronously.
 ### Parameters
 
 -   `configPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the file or directory to load
--   `options` **[ConfigReadOptions](#configreadoptions)** The options (optional, default `ConfigReadOptions.default`)
+-   `options` **Partial&lt;[ConfigReadOptions](#configreadoptions)>** The options (optional, default `ConfigReadOptions.default`)
 
 Returns **any** The loaded data
 
@@ -81,7 +81,7 @@ Reads a configuration file or directory asynchronously.
 ### Parameters
 
 -   `configPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the file or directory to load
--   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
+-   `options` **Partial&lt;[ConfigReadOptions](#configreadoptions)>** The options (optional, default `ConfigReadOptions`)
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;any>** A promise that resolves the loaded data
 
@@ -92,7 +92,7 @@ Lists all configurations in a directory, asynchrounously.
 ### Parameters
 
 -   `folderPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the folder that contains multiple configurations to list
--   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
+-   `options` **Partial&lt;[ConfigReadOptions](#configreadoptions)>** The options (optional, default `ConfigReadOptions`)
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>>** A promise that resolves a list of full paths
 
@@ -103,7 +103,7 @@ Lists all configurations in a directory, synchrounously.
 ### Parameters
 
 -   `folderPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the folder that contains multiple configurations to list
--   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
+-   `options` **Partial&lt;[ConfigReadOptions](#configreadoptions)>** The options (optional, default `ConfigReadOptions`)
 
 Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** A list of all full paths of all configurations
 
@@ -114,7 +114,7 @@ Reads all the configurations contained in a folder to a map object
 ### Parameters
 
 -   `folderPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the folder that contains multiple configurations to load
--   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
+-   `options` **Partial&lt;[ConfigReadOptions](#configreadoptions)>** The options (optional, default `ConfigReadOptions`)
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), any>>** A promise that resolves a map of loaded configurations
 
@@ -125,6 +125,6 @@ Reads all the configurations contained in a folder to a map object
 ### Parameters
 
 -   `folderPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Path of the folder that contains multiple configurations to load
--   `options` **[ConfigReadOptions.default](#configreadoptionsdefault)** The options (optional, default `ConfigReadOptions`)
+-   `options` **Partial&lt;[ConfigReadOptions](#configreadoptions)>** The options (optional, default `ConfigReadOptions`)
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), any>** A map of loaded configurations

@@ -11,7 +11,7 @@ const readdirAsync = util.promisify(fs.readdir)
 /**
  * Lists all configurations in a directory, asynchrounously.
  * @param {string} folderPath Path of the folder that contains multiple configurations to list
- * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
+ * @param {Partial<ConfigReadOptions>} [options=ConfigReadOptions] The options
  * @returns {Promise<string[]>} A promise that resolves a list of full paths
  */
 async function configsListAsync(folderPath, options = ConfigReadOptions.default) {

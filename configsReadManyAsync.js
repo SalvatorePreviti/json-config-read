@@ -8,7 +8,7 @@ const makeError = require('./lib/makeError')
 /**
  * Reads all the configurations contained in a folder to a map object
  * @param {string} folderPath Path of the folder that contains multiple configurations to load
- * @param {ConfigReadOptions.default} [options=ConfigReadOptions] The options
+ * @param {Partial<ConfigReadOptions>} [options=ConfigReadOptions] The options
  * @returns {Promise<Object.<string, *>>} A promise that resolves a map of loaded configurations
  */
 async function configsReadManyAsync(folderPath, options = ConfigReadOptions.default) {

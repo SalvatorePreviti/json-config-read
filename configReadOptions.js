@@ -9,7 +9,7 @@ class ConfigReadOptions {
   /**
    * Creates an instance of ConfigReadOptions.
    *
-   * @param {ConfigReadOptions|undefined|null} [options=null] The options to merge,
+   * @param {Partial<ConfigReadOptions>|undefined|null} [options=null] The options to merge,
    */
   constructor(options = null) {
     if (!options) {
@@ -19,13 +19,13 @@ class ConfigReadOptions {
     if (!options) {
       /**
        * True if directories can be read merging all files inside them
-       * @type {boolean?}
+       * @type {boolean}
        */
       this.allowDirectories = true
 
       /**
        * The root path to use. If unspecified, current directory is used.
-       * @type {string?}
+       * @type {string}
        */
       this.rootPath = undefined
 
@@ -33,7 +33,7 @@ class ConfigReadOptions {
        *
        * The file extensions that are parseable.
        *
-       * @type {Object.<string, boolean>?}
+       * @type {Object.<string, boolean>}
        */
       this.extensions = {
         '.js': false,
@@ -107,7 +107,7 @@ class ConfigReadOptions {
  * The default options.
  *
  * @static
- * @type {ConfigReadOptions}
+ * @type {Partial<ConfigReadOptions>}
  */
 ConfigReadOptions.default = new ConfigReadOptions()
 
